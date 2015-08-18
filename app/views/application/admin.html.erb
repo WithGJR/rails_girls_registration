@@ -1,0 +1,9 @@
+
+<% content_for :js do %>
+<%= javascript_include_tag 'admin_components' %>
+<% end %>
+
+<%= react_component('App', brand: "Rails Girl Registration") %>
+<%# This project use ReactJS as the front-end framework %>
+<%# Please see /app/assets/javascripts/components/ %>
+<%# Documentation: https://github.com/reactjs/react-rails %>

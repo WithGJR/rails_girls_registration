@@ -3,7 +3,9 @@
 <head>
   <title>RailsGirlsRegistration</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= content_for?(:css) ? yield(:css) : "" %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= content_for?(:js) ? yield(:js) : "" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
