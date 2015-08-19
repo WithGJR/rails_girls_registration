@@ -1,7 +1,7 @@
 namespace :admin do
   desc "Create A Admin User" 
   task :create => :environment  do
-    puts "--- Please follows the instructions bellow to create a admin user ---" 
+    puts "--- Please follow the instructions bellow to create a admin user ---" 
     
     user = User.new 
     puts "Email: "
@@ -13,7 +13,6 @@ namespace :admin do
     user.password_confirmation = STDIN.gets.strip
 
     user.is_admin = true
-
     user.save!
 
     puts "--- Admin user has been created successfully! ---"
