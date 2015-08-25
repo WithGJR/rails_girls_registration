@@ -5,7 +5,7 @@
 //= require react_bootstrap
 
 //= require_self
-//= require components
+//= require shared
 
 window.bs = ReactBootstrap
 // http://react-bootstrap.github.io/components.html

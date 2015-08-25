@@ -1,16 +1,10 @@
 const ActivityList = React.createClass({
   handleDelete(event){
-    // For sending the delete request, we need to setup the csrf-token to make it work
-    var csrfToken = $('meta[name=csrf-token]').attr('content');
-    var csrfParam = $('meta[name=csrf-param]').attr('content');
-    var data = { _method: "delete" };
-    data[csrfParam] = csrfToken;
-
     var id = event.target.id;
     $.ajax({
       method: "POST",
       url: "/backend/activities/" + id,
-      data: data
+      data: buildDataForAjaxDeleteRequest()
     })
     .done((msg) => {
       this.props.deleteActivity(parseInt(id));
