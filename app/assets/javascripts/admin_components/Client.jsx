@@ -14,6 +14,10 @@ const Client = React.createClass({
       console.log("not work"); 
     });         
   },
+  editActivity(index){
+    var activity = this.state.activities[index];
+    this.setState({isEditingActivityNow: true, editingActivity: activity});
+  },
   deleteActivity(id){
     var oldActivities = this.state.activities;
     var newActivities = [];
@@ -29,11 +33,16 @@ const Client = React.createClass({
     this.fetchActivities();
   },
   getInitialState(){
-    return {activities: []};
+    return {activities: [], isEditingActivityNow: false, editingActivity: null};
   },
   render() {
-    return (
-      <ActivityList activities={this.state.activities} deleteActivity={this.deleteActivity} />
-    );
+    var result;
+    if (this.state.isEditingActivityNow) {
+      result = <EditActivityForm activity={this.state.editingActivity} />; 
+    }else{
+      result = <ActivityList activities={this.state.activities} handleEdit={this.editActivity} deleteActivity={this.deleteActivity} />; 
+    }
+
+    return result;
   }
 })

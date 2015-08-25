@@ -4,15 +4,20 @@ const MSG_TYPE = {
 };
 
 const ActivityList = React.createClass({
+  handleEdit(event){
+    var index = event.target.id;
+    this.props.handleEdit(index);
+  },
   handleDelete(event){
-    var id = event.target.id;
+    var index = event.target.id;
+    var activity = this.props.activities[index];
     $.ajax({
       method: "POST",
-      url: "/backend/activities/" + id,
-      data: buildDataForAjaxDeleteRequest()
+      url: "/backend/activities/" + activity.id,
+      data: buildDataForAjaxRequest("delete")
     })
     .done((msg) => {
-      this.props.deleteActivity(parseInt(id));
+      this.props.deleteActivity(parseInt(activity.id));
       this.setState({msg: msg});
     })
     .fail((response) => {
@@ -38,14 +43,15 @@ const ActivityList = React.createClass({
     return {msg: "", msgType: null}; 
   },
   render(){
-    var rows = this.props.activities.map((activity) => {
+    var rows = this.props.activities.map((activity, index) => {
       return (
         <tr>
           <td>{activity.name}</td>
           <td>{activity.description}</td>
           <td>{activity.location}</td>
           <td>
-            <button id={activity.id} className="btn btn-danger" onClick={this.handleDelete}>Delete</button>
+            <button id={index} className="btn btn-info" onClick={this.handleEdit}>Edit</button>
+            <button id={index} className="btn btn-danger" onClick={this.handleDelete}>Delete</button>
           </td>
         </tr>
       ); 
