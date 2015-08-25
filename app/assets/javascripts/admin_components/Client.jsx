@@ -5,7 +5,7 @@ const Client = React.createClass({
   fetchActivities(){
     $.ajax({
       method: "GET",
-      url: "/backend/activities" 
+      url: backend_activities_path 
     })
     .done((activities) => {
       this.setState({activities: activities}); 
@@ -13,6 +13,9 @@ const Client = React.createClass({
     .fail(() => {
       console.log("not work"); 
     });         
+  },
+  backToActivityListPage(){
+    this.setState({isEditingActivityNow: false, editingActivity: null});
   },
   editActivity(index){
     var activity = this.state.activities[index];
@@ -38,7 +41,7 @@ const Client = React.createClass({
   render() {
     var result;
     if (this.state.isEditingActivityNow) {
-      result = <EditActivityForm activity={this.state.editingActivity} />; 
+      result = <EditActivityForm activity={this.state.editingActivity} backToActivityListPage={this.backToActivityListPage} />; 
     }else{
       result = <ActivityList activities={this.state.activities} handleEdit={this.editActivity} deleteActivity={this.deleteActivity} />; 
     }

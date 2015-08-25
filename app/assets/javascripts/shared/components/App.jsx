@@ -8,9 +8,6 @@ const App = React.createClass({
                 <Navbar brand={ this.props.brand }></Navbar>
                 <div className="container">
                     <Client></Client>
-                    <bs.ButtonToolbar>
-                        <bs.Button bsStyle='primary'>Primary</bs.Button>
-                    </bs.ButtonToolbar>
                 </div>
             </div>
         );

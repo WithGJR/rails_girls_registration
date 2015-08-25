@@ -1,8 +1,3 @@
-const MSG_TYPE = {
-  SUCCESS: 0,
-  ERROR: 1
-};
-
 const ActivityList = React.createClass({
   handleEdit(event){
     var index = event.target.id;
@@ -13,7 +8,7 @@ const ActivityList = React.createClass({
     var activity = this.props.activities[index];
     $.ajax({
       method: "POST",
-      url: "/backend/activities/" + activity.id,
+      url: destroy_backend_activity_path(activity.id),
       data: buildDataForAjaxRequest("delete")
     })
     .done((msg) => {
