@@ -1,11 +1,11 @@
 class Backend::ActivitiesController < ApplicationController
   before_action :authenticate_admin!
-  before_action :find_activity, only: [:update]
+  before_action :find_activity, only: [:update, :destroy]
 
   def index
     @activities = Activity.all
     respond_to do |format|
-      format.json { render json: @activities }
+      format.json { render json: @activities.recent }
     end
   end
 
@@ -51,9 +51,4 @@ class Backend::ActivitiesController < ApplicationController
     @activity = Activity.find(params[:id])
   end
 
-  def authenticate_admin!
-    unless user_signed_in? && current_user.is_admin? 
-      authenticate_user! 
-    end   
-  end
 end
