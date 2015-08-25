@@ -1,3 +1,8 @@
+const MSG_TYPE = {
+  SUCCESS: 0,
+  ERROR: 1
+};
+
 const ActivityList = React.createClass({
   handleDelete(event){
     var id = event.target.id;
@@ -10,14 +15,19 @@ const ActivityList = React.createClass({
       this.props.deleteActivity(parseInt(id));
       this.setState({msg: msg});
     })
-    .fail(() => {
-      console.log("not work"); 
+    .fail((response) => {
+      if (response.status === 401) {
+        //When user is not signed in
+        window.location = SIGN_IN_PATH;
+      }
     });         
   },
   buildMessageDOM(){
     var DOM;
-    if (this.state.msg !== "") {
+    if (this.state.msg !== "" && this.state.msgType === MSG_TYPE.SUCCESS) {
       DOM = <div className="alert alert-info" role="alert">{this.state.msg}</div>;
+    }else if (this.state.msg !== "" && this.state.msgType === MSG_TYPE.ERROR){
+      DOM = <div className="alert alert-danger" role="alert">{this.state.msg}</div>;
     }else{
       DOM = ""; 
     }
@@ -25,7 +35,7 @@ const ActivityList = React.createClass({
     return DOM;
   },
   getInitialState(){
-    return {msg: ""}; 
+    return {msg: "", msgType: null}; 
   },
   render(){
     var rows = this.props.activities.map((activity) => {
