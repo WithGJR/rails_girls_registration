@@ -9,9 +9,9 @@ const AddActivityForm = React.createClass({
       url: create_backend_activity_path,
       data: data
     })
-    .done((msg) => {
-      this.props.addNewActivity(this.state.activity);
-      this.setState({msg: msg, msgType: MSG_TYPE.SUCCESS});
+    .done((response) => {
+      this.props.addNewActivity(response.activity);
+      this.setState({activity: response.activity , msg: response.msg, msgType: MSG_TYPE.SUCCESS});
     })
     .fail((response) => {
       //TODO
@@ -27,6 +27,7 @@ const AddActivityForm = React.createClass({
   },
   buildMessageDOM(){
     var DOM;
+    console.log(this.state);
     if (this.state.msg !== "" && this.state.msgType === MSG_TYPE.SUCCESS) {
       DOM = <div className="alert alert-info" role="alert">{this.state.msg}</div>;
     }else if (this.state.msg !== "" && this.state.msgType === MSG_TYPE.ERROR){

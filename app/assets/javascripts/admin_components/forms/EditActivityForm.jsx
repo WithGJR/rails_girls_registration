@@ -9,8 +9,8 @@ const EditActivityForm = React.createClass({
       url: update_backend_activity_path(this.state.activity.id),
       data: data
     })
-    .done((msg) => {
-      this.setState({msg: msg, msgType: MSG_TYPE.SUCCESS});
+    .done((response) => {
+      this.setState({msg: response.msg, msgType: MSG_TYPE.SUCCESS});
     })
     .fail((response) => {
       //TODO

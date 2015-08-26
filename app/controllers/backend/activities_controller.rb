@@ -13,7 +13,7 @@ class Backend::ActivitiesController < ApplicationController
     @activity = Activity.new(activity_params)
     if @activity.save
       respond_to do |format|
-        format.json { render json: @activity }
+        format.json { render json: { activity: @activity, msg: "New activity has been created successfully!" } }
       end
     else
       respond_to do |format|

@@ -11,9 +11,9 @@ const ActivityList = React.createClass({
       url: destroy_backend_activity_path(activity.id),
       data: buildDataForAjaxRequest("delete")
     })
-    .done((msg) => {
+    .done((response) => {
       this.props.deleteActivity(parseInt(activity.id));
-      this.setState({msg: msg});
+      this.setState({msg: response.msg});
     })
     .fail((response) => {
       if (response.status === 401) {

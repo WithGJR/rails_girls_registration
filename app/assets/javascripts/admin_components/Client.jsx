@@ -27,7 +27,7 @@ const Client = React.createClass({
   addNewActivity(activity){
     var newActivities = this.state.activities;
     newActivities.unshift(activity);
-    this.setState({activities: oldActivities}); 
+    this.setState({activities: newActivities}); 
   },
   editActivity(index){
     var activity = this.state.activities[index];
