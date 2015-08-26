@@ -54,7 +54,6 @@ const Client = React.createClass({
     var template = function(component){
       return (
         <div>
-          <button type="button" className="btn btn-success" onClick={this.gotoAddActivityPage}>新增活動</button>
           {component} 
         </div>     
       ); 
@@ -74,7 +73,7 @@ const Client = React.createClass({
         break;
       case PAGE.ACTIVITY_LIST:
         resultDOM = template(
-          <ActivityList activities={this.state.activities} handleEdit={this.editActivity} deleteActivity={this.deleteActivity} />
+          <ActivityList activities={this.state.activities} gotoAddActivityPage={this.gotoAddActivityPage} handleEdit={this.editActivity} deleteActivity={this.deleteActivity} />
         ); 
         break;
     }

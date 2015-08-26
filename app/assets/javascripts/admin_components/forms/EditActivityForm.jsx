@@ -45,6 +45,7 @@ const EditActivityForm = React.createClass({
     return (
       <div>
         {message}
+        <h2>編輯 {this.state.activity.name}</h2>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label for="name">活動名稱</label>

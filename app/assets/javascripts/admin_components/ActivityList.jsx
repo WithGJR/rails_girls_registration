@@ -57,6 +57,7 @@ const ActivityList = React.createClass({
     return (
       <div>
        {message} 
+       <button type="button" className="btn btn-success" onClick={this.props.gotoAddActivityPage}>新增活動</button>
         <table className="table table-hover">
           <thead>
             <tr>
