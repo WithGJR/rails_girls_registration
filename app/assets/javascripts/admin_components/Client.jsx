@@ -51,9 +51,17 @@ const Client = React.createClass({
     return {activities: [], currentPage: PAGE.ACTIVITY_LIST, editingActivity: null};
   },
   render() {
-    var template = function(component){
+    var template = function(args, component){
+      var activeBreadcrumbItem = (args["currentPageName"] !== null) ? 
+                                 <li className="active">{args["currentPageName"]}</li> :
+                                 "";
+
       return (
         <div>
+          <ol className="breadcrumb">
+            <li><a href="#" onClick={this.backToActivityListPage}>活動清單</a></li>
+            {activeBreadcrumbItem}
+          </ol>
           {component} 
         </div>     
       ); 
@@ -63,16 +71,19 @@ const Client = React.createClass({
     switch(this.state.currentPage){
       case PAGE.ADD_ACTIVITY:
         resultDOM = template(
+          {currentPageName: "新增活動"},
           <AddActivityForm addNewActivity={this.addNewActivity} backToActivityListPage={this.backToActivityListPage} />
         ); 
         break;
       case PAGE.EDIT_ACTIVITY:
         resultDOM = template(
+          {currentPageName: "編輯活動"},
           <EditActivityForm activity={this.state.editingActivity} backToActivityListPage={this.backToActivityListPage} />
         ); 
         break;
       case PAGE.ACTIVITY_LIST:
         resultDOM = template(
+          {currentPageName: null},
           <ActivityList activities={this.state.activities} gotoAddActivityPage={this.gotoAddActivityPage} handleEdit={this.editActivity} deleteActivity={this.deleteActivity} />
         ); 
         break;

@@ -14,7 +14,7 @@ const AddActivityForm = React.createClass({
       this.setState({activity: response.activity , msg: response.msg, msgType: MSG_TYPE.SUCCESS});
     })
     .fail((response) => {
-      //TODO
+      this.setState({msg: response.responseJSON.errors.join('\n'), msgType: MSG_TYPE.ERROR});
     });         
   },
   handleInput(event){
@@ -27,7 +27,6 @@ const AddActivityForm = React.createClass({
   },
   buildMessageDOM(){
     var DOM;
-    console.log(this.state);
     if (this.state.msg !== "" && this.state.msgType === MSG_TYPE.SUCCESS) {
       DOM = <div className="alert alert-info" role="alert">{this.state.msg}</div>;
     }else if (this.state.msg !== "" && this.state.msgType === MSG_TYPE.ERROR){

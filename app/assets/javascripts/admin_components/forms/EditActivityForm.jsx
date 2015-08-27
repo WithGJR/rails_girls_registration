@@ -13,7 +13,7 @@ const EditActivityForm = React.createClass({
       this.setState({msg: response.msg, msgType: MSG_TYPE.SUCCESS});
     })
     .fail((response) => {
-      //TODO
+      this.setState({msg: response.responseJSON.errors.join('\n'), msgType: MSG_TYPE.ERROR});
     });         
   },
   handleInput(event){

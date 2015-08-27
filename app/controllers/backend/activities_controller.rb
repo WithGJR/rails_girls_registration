@@ -17,7 +17,7 @@ class Backend::ActivitiesController < ApplicationController
       end
     else
       respond_to do |format|
-        format.json { render json: { errors: @activity.errors.full_messages, status: 422 } }
+        format.json { render json: { errors: @activity.errors.full_messages }, status: 422 }
       end
     end
   end
@@ -29,7 +29,7 @@ class Backend::ActivitiesController < ApplicationController
       end
     else
       respond_to do |format|
-        format.json { render json: { errors: @activity.errors.full_messages, status: 422 } }
+        format.json { render json: { errors: @activity.errors.full_messages }, status: 422 }
       end
     end
   end
