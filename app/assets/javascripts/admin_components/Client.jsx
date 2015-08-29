@@ -78,7 +78,7 @@ const Client = React.createClass({
       case PAGE.EDIT_ACTIVITY:
         resultDOM = template(
           {currentPageName: "編輯活動"},
-          <EditActivityForm activity={this.state.editingActivity} backToActivityListPage={this.backToActivityListPage} />
+          <EditActivityForm activity={this.state.editingActivity} updateActivity={this.updateActivity} backToActivityListPage={this.backToActivityListPage} />
         ); 
         break;
       case PAGE.ACTIVITY_LIST:
