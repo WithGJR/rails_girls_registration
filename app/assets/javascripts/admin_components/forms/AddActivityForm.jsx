@@ -4,7 +4,10 @@ const AddActivityForm = React.createClass({
     this.setState({activity: response.activity , message: response.msg, messageType: MSG_TYPE.SUCCESS});
   },
   ajaxFailCallback(response){
-    this.setState({message: response.responseJSON.errors.join('\n\n'), messageType: MSG_TYPE.ERROR});
+    var errorMessage = response.responseJSON.errors.map((error) =>{ 
+      return <p>{error}</p>; 
+    });
+    this.setState({message: errorMessage, messageType: MSG_TYPE.ERROR});
   },
   getInitialState(){
     return {activity: {name: "", description: "", location: ""}, message: "", messageType: null}; 
@@ -21,6 +24,7 @@ const AddActivityForm = React.createClass({
           method="post"
           activity={this.state.activity}
           ajaxDoneCallback={this.ajaxDoneCallback} 
+          ajaxFailCallback={this.ajaxFailCallback}
           submitButtonValue="新增" />
       </div> 
     ); 
