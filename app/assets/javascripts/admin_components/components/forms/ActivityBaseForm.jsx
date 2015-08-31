@@ -1,20 +1,7 @@
 const ActivityBaseForm = React.createClass({
   handleSubmit(event){
     event.preventDefault();
-    var data = buildDataForAjaxRequest(this.props.method);
-    data.activity = this.state.activity;
-
-    $.ajax({
-      method: "post",
-      url: this.props.url,
-      data: data
-    })
-    .done((response) => {
-      this.props.ajaxDoneCallback(response);
-    })
-    .fail((response) => {
-      this.props.ajaxFailCallback(response); 
-    });         
+    this.props.handleSubmit(this.state.activity);
   },
   handleInput(event){
     var newActivity = this.state.activity; 

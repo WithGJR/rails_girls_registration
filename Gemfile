@@ -14,6 +14,8 @@ gem 'devise'
 gem 'react-rails', '~> 1.0'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'react-bootstrap-rails'
+gem 'flux-rails-assets'
+
 
 group :development, :test do
   gem 'byebug'
